@@ -11,9 +11,12 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_12_18_194403) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "deputy_headteachers", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "school_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "school_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["school_id"], name: "index_deputy_headteachers_on_school_id"
@@ -21,8 +24,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_18_194403) do
   end
 
   create_table "grades", force: :cascade do |t|
-    t.integer "teacher_id", null: false
-    t.integer "school_id", null: false
+    t.bigint "teacher_id", null: false
+    t.bigint "school_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["school_id"], name: "index_grades_on_school_id"
@@ -30,8 +33,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_18_194403) do
   end
 
   create_table "headteachers", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "school_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "school_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["school_id"], name: "index_headteachers_on_school_id"
@@ -39,29 +42,29 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_18_194403) do
   end
 
   create_table "owners", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_owners_on_user_id"
   end
 
   create_table "parents", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_parents_on_user_id"
   end
 
   create_table "schools", force: :cascade do |t|
-    t.integer "owner_id", null: false
+    t.bigint "owner_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_schools_on_owner_id"
   end
 
   create_table "students", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "grade_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "grade_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["grade_id"], name: "index_students_on_grade_id"
@@ -69,8 +72,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_18_194403) do
   end
 
   create_table "teachers", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "school_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "school_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["school_id"], name: "index_teachers_on_school_id"
